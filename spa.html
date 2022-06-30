@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>tableau d'enregistrement</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+        integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="spa.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="dates">
+                <div id="date-a-jour"></div>
+                <div id="heur"></div>
+            </div>
+            <div class="circle"><a href="#"
+                    onclick="document.getElementById('boite-modale-profil').style.display='block'"
+                    style="width:auto;"><i class="fa-solid fa-user"></i></a>
+            </div>
+        </div>
+        <div class="main">
+            <div class="menu-item">
+                <div class="empty-and-sexe-container">
+                    <div class="empty-box">
+                        <div> <input type="search" placeholder="search" id="search" onkeyup="filter(event)"></div>
+                        <div class="search-icone"><i class="fa-solid fa-magnifying-glass"></i></div>
+                    </div>
+                    <div class="sexe">
+                        <select name="sexe" id="sexe">
+                            <option value="">--sexe--</option>
+                            <option value="feminin">F</option>
+                            <option value="masculin">M</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="buttons">
+                    <div class="item1"><button onclick="document.getElementById('boite-modale').style.display='block'"
+                            style="width:auto;">ajouter</button></div>
+                    <div class="item2"><button onclick='mydelete()'>supprimer</button></div>
+                </div>
+            </div>
+        </div>
+        <div class="table-container">
+            <table cellspacing="0" celpading="0" width="95%" id="myTable">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>id</th>
+                        <th>Nom</th>
+                        <th>Prenom</th>
+                        <th>date de naissance</th>
+                        <th>adresse E-mail</th>
+                        <th>phone</th>
+                        <th>sexe</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody id="tbody-container">
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <!-- boite modale pour utilisateur -->
+    <form onsubmit="return localstorage ();">
+        <div id="boite-modale">
+
+            <div class="modal-containt">
+                <a href="#"><span onclick="clossModal()">X</span></a>
+                <h2>Ajouter un Utilisateur</h2>
+                <div class="input"><input type="text" id="nom" placeholder="entrez votre nom" autofocus required></div>
+                <div class="input"><input type="text" id="prenom" placeholder="entrez votre prenom" autofocus required>
+                </div>
+                <div class="input"><input type="date" id="dateDeNaissance" placeholder="entrez votre date de naissance"
+                        autofocus required>
+                </div>
+                <div class="input"><input type="email" id="mail" placeholder="entrez votre email" autofocus required>
+                </div>
+                <div class="input"><input type="tel" id="tel" placeholder="entrez votre numero de telephone" autofocus
+                        required>
+                </div>
+                <div class="radio" id="Sexe">
+                    <label for="">
+                        <span>F</span>
+                        <input type="radio" name="genre" value="Feminin">
+                    </label>
+                    <label for="">
+                        <span>M</span>
+                        <input type="radio" name="genre" value="Masculin">
+                    </label>
+                </div>
+                <div class="button">
+                    <button type="submit" onclick="enregistrement()">Enregistrer</button>
+                </div>
+            </div>
+        </div>
+    </form>
+    <!-- boite modal pour profil -->
+    <div id="boite-modale-profil">
+
+        <div class="modal-containt-profil">
+            <div class="menu-bar">
+                <a href="#"><span onclick="document.getElementById('boite-modale-profil').style.display='none'"
+                        class="close" title="Close Modal">X</span></a>
+                <div class="profil"><i class="fa-solid fa-user"></i></div>
+                <div class="name">DEDE, ama</div>
+            </div>
+
+            <div class="email">dede.ama@gmail.com</div>
+            <div class="input"><input type="passworld" placeholder="mots de passe actuel"></div>
+            <div class="input"><input type="passworld" placeholder="nouveau mots de passe "></div>
+            <div class="input"><input type="passworld" placeholder="confirmer le nouveau mots de passe"></div>
+            <div class="button-container">
+                <div class="button-profil">
+                    <button type="button">Ennuler</button>
+                </div>
+                <div class="buttons-profil">
+                    <button type="submit">Sauvegrder</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="spa-date-heur.js"></script>
+    <script src="spa-boite-modal.js"></script>
+    <script src="spa-mis-a-jour-du-tableau.js"></script>
+    <script src="/stokage-into-locale-storage.js"></script>
+    <script src="bar-de-recherche.js"></script>
+    <script src="/selection-suppression.js"></script>
+    
+</body>
+
+</html>
